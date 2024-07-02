@@ -74,6 +74,17 @@
             color: #333;
             background-color: #fff;
         }
+
+        /* Media queries for responsive design */
+        @media (max-width: 600px) {
+            .form-row {
+                flex-direction: column;
+            }
+            .form-group {
+                padding: 0;
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -162,6 +173,7 @@
 
     <script>
         async function calculateEligibility() {
+            const baseURL = 'http://16.170.184.47:80'; // Define the base URL
             const form = document.getElementById('eligibility-form');
             const formData = new FormData(form);
             const jsonData = Object.fromEntries(formData.entries());
@@ -169,7 +181,7 @@
             console.log('Input Data:', jsonData); // Log input data
 
             try {
-                const response = await fetch('https://api-mz.onrender.com/calculate_eligibility', {  // Updated to deployed API URL
+                const response = await fetch(`${baseURL}/calculate_eligibility`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
